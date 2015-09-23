@@ -1,4 +1,6 @@
 # ahorcado
 Juego Ahorcado
 
-Desarrollo en base a Objetos
+Juego realizado como parte del curso de Programacion básica de Platzi.
+
+
