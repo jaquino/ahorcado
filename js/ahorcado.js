@@ -1,12 +1,12 @@
-var palabras = ['otorrinolaringologia',
+var diccionario = ['otorrinolaringologia',
                 'schwarzenegger',
                 'supercalifragilisticoespialidoso',
                 'parangaricutirimicuaro']
 
 var l
 
-// Función Random
-function random(minimo, maximo)
+// Función aleatorio
+function aleatorio(minimo, maximo)
 {
     var numero = Math.floor( Math.random() * (maximo - minimo + 1) + minimo );
     return numero;
@@ -14,14 +14,14 @@ function random(minimo, maximo)
 
 // Definimos una clase para el juego
 var Ahorcado = function() {
-  var p = palabras[ random(0,  palabras.length - 1 ) ];
+  var p = diccionario[ aleatorio(0,  diccionario.length - 1 ) ];
   this.palabra = p.toUpperCase().split('');
   this.letras = this.palabra.map(function(){ return false; });
   this.fallas = 0;
   this.gano = false;
   this.perdio = false;
-  var pista = document.getElementById("pista");
 
+  var pista = document.getElementById("pista");
   var c = document.getElementById("canvas");
   c.width  = 500;
   c.height = 400;
@@ -141,12 +141,7 @@ Ahorcado.prototype.muestraPalabra = function(){
   miPalabra = this.palabra;
   var perdio = this.perdio;
   this.letras.forEach( function( item, idx ){
-    if (item || perdio) {
-      str += miPalabra[idx];
-    } else {
-      str += "_"
-    }
-    str += " ";
+    str += ( (item || perdio) ? miPalabra[idx] : "_" ) + " ";
   });
   pista.innerHTML = str;
 }
@@ -185,6 +180,5 @@ function iniciar(){
 
   b = document.getElementById("boton");
   b.addEventListener("click", function(){ ahorcado.evaluaLetra(); } );
-
 
 }
